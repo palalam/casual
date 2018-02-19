@@ -1,11 +1,16 @@
 <?php
 namespace App\Traits;
 use DB;
+use Auth;
 
 trait Common
 {
-	public function isAdmin($id)
+
+	public function getShop()//Повертає магазин юзера
 	{
-		return ( DB::table('users') -> where('id', $id) ->first()->is_admin ) ? true : false ;
+		//return DB::table('shops') ->where('shop_user_id', Auth::user() -> id) -> first();
+		return $shop = DB::table('shops') ->where('shop_user_id', Auth::user() -> id) -> first();
 	}
+
+	
 }

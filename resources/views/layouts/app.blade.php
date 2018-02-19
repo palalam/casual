@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
@@ -38,13 +39,23 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                     </ul>
-
+                    <div style="margin-top: 10px;" class="col-md-offset-3 col-md-5">
+                        <ul class="nav navbar-nav navbar-center">
+                            <form action="{{route('search')}}" method="get">
+                                <input  type="text" name="search_text">
+                                {{csrf_field()}}
+                                <input type="submit" value="Пошук" name="submit">
+                            </form>
+                        </ul>
+                    </div>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+
+
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">Вхід</a></li>
+                            <li><a href="{{ route('register') }}">Реєстрація</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -56,13 +67,20 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Вихід
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('cabinet') }}">Мій кабінет</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('my_shop') }}">Мій магазин</a>
+                                    </li>
+                                    
                                 </ul>
                             </li>
                         @endguest
